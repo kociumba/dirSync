@@ -33,3 +33,5 @@ func dirSync(syncFrom string, syncTo string, copy bool) error {
 
 	return nil
 }
+
+// i hate git tags
