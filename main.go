@@ -1,6 +1,10 @@
 package dirSync
 
-import "os"
+import (
+	"os"
+
+	cp "github.com/otiai10/copy"
+)
 
 func dirSync(syncFrom string, syncTo string, copy bool) error {
 
@@ -16,7 +20,7 @@ func dirSync(syncFrom string, syncTo string, copy bool) error {
 	}
 
 	if copy == true {
-		err := os.Rename(syncFrom, syncTo)
+		err := cp.Copy(syncFrom, syncTo)
 		if err != nil {
 			return err
 		}
