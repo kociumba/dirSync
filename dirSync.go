@@ -6,7 +6,7 @@ import (
 	cp "github.com/otiai10/copy"
 )
 
-func dirSync(syncFrom string, syncTo string, copy bool) error {
+func DirSync(syncFrom string, syncTo string, copy bool) error {
 
 	syncFrom = os.ExpandEnv(syncFrom)
 	syncTo = os.ExpandEnv(syncTo)
