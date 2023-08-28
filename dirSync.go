@@ -16,7 +16,7 @@ import (
 // If copy is set to true, the function will copy the files from syncFrom to syncTo.
 // If copy is set to false, the function will create symbolic links from syncFrom to syncTo.
 //
-// The function returns an error if there is any error during the synchronization process.
+// The function returns an error if there is any error during the synchronization process aswell as if the syncFrom directory does not exist.
 // If the synchronization is successful, it returns nil.
 func DirSync(syncFrom string, syncTo string, copy bool) error {
 
