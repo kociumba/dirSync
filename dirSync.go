@@ -9,10 +9,13 @@ import (
 
 // DirSync synchronizes the contents of the syncFrom directory to the syncTo directory.
 //
+// !!!!! WARNING !!!!!!
+// currently the symlink functionality is broken, please refrain from using it
+//
 // It takes two parameters: syncFrom, which is the source directory to sync from, and syncTo, which is the target directory to sync to.
 // Both syncFrom and syncTo can contain env variables, wich are going to be expanded during runtime.
 //
-// The function has an optional parameter named copy, which indicates whether to perform a copy or a symlink operation.
+// The function has an optional parameter named copy, which indicates whether to perform a copy or create a symlink.
 // If copy is set to true, the function will copy the files from syncFrom to syncTo.
 // If copy is set to false, the function will create symbolic links from syncFrom to syncTo.
 //
@@ -29,6 +32,12 @@ func DirSync(syncFrom string, syncTo string, copy bool) error {
 
 	if _, err := os.Stat(syncTo); os.IsNotExist(err) {
 		os.Create(syncTo)
+	}
+
+	if copy == true {
+		if _, err := os.Stat(syncTo); os.IsExist(err) {
+			return err
+		}
 	}
 
 	if copy == true {
